@@ -1,0 +1,644 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090909">
+<title>STUDIO / 01 — Creative Portfolio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #090909;
+  --surface: #111111;
+  --surface-2: #181818;
+  --white: #f4f4f2;
+  --muted: #888888;
+  --line: #252525;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1180px, 88%);
+  margin: auto;
+}
+
+/* NAVIGATION */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(9,9,9,.88);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--line);
+}
+
+nav {
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  letter-spacing: -1px;
+  font-size: 19px;
+}
+
+.logo span {
+  color: var(--muted);
+}
+
+.nav-links {
+  display: flex;
+  gap: 34px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 13px;
+  color: #aaa;
+  transition: color .25s;
+}
+
+.nav-links a:hover {
+  color: white;
+}
+
+/* HERO */
+
+.hero {
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  right: -180px;
+  top: 40px;
+  background: radial-gradient(circle, #242424 0%, transparent 70%);
+  opacity: .55;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 100px 0;
+}
+
+.eyebrow {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.hero h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(54px, 9vw, 112px);
+  line-height: .98;
+  letter-spacing: -7px;
+  font-weight: 600;
+  max-width: 900px;
+}
+
+.hero h1 span {
+  color: #777;
+}
+
+.hero-description {
+  color: #999;
+  font-size: 15px;
+  max-width: 430px;
+  margin-top: 32px;
+}
+
+.hero-bottom {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 42px;
+}
+
+.button {
+  display: inline-block;
+  padding: 14px 23px;
+  background: var(--white);
+  color: #090909;
+  font-size: 12px;
+  font-weight: 700;
+  transition: .25s;
+}
+
+.button:hover {
+  background: #ccc;
+  transform: translateY(-3px);
+}
+
+.text-link {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.text-link:hover {
+  color: white;
+}
+
+/* GENERAL SECTIONS */
+
+section {
+  padding: 110px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.section-top {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 45px;
+  gap: 20px;
+}
+
+.section-number {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.section-top h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(34px, 5vw, 55px);
+  letter-spacing: -2px;
+}
+
+.section-description {
+  color: var(--muted);
+  font-size: 13px;
+  max-width: 270px;
+}
+
+/* PROJECT GALLERY */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 34px 22px;
+}
+
+.project {
+  cursor: pointer;
+}
+
+.project-image {
+  aspect-ratio: 4 / 3;
+  background: var(--surface-2);
+  overflow: hidden;
+  position: relative;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .6s cubic-bezier(.2,.7,.2,1);
+}
+
+.project:hover .project-image img {
+  transform: scale(1.045);
+}
+
+.project-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding-top: 16px;
+}
+
+.project-info h3 {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.project-info p {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.project-number {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* ABOUT */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+}
+
+.about-grid h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(38px, 5vw, 60px);
+  letter-spacing: -3px;
+  line-height: 1.05;
+}
+
+.about-copy {
+  color: #999;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.about-copy p + p {
+  margin-top: 20px;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.skills span {
+  border: 1px solid var(--line);
+  padding: 8px 13px;
+  font-size: 11px;
+  color: #bbb;
+}
+
+/* CONTACT */
+
+.contact {
+  text-align: center;
+  padding: 130px 0;
+}
+
+.contact h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(42px, 7vw, 80px);
+  letter-spacing: -4px;
+  line-height: 1.05;
+}
+
+.contact p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 22px auto 30px;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 28px 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* ANIMATIONS */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+  nav {
+    height: auto;
+    min-height: 70px;
+    align-items: flex-start;
+    padding: 22px 0;
+    gap: 15px;
+  }
+
+  .nav-links {
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+  }
+
+  .hero {
+    min-height: 570px;
+  }
+
+  .hero h1 {
+    letter-spacing: -4px;
+  }
+
+  section {
+    padding: 80px 0;
+  }
+
+  .section-top {
+    display: block;
+  }
+
+  .section-description {
+    margin-top: 15px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .contact {
+    padding: 100px 0;
+  }
+
+  .footer-content {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="#home" class="logo">STUDIO <span>/ 01</span></a>
+
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#edits">My Edits</a></li>
+        <li><a href="#design">Graphic Design</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero" id="home">
+    <div class="container hero-content">
+      <p class="eyebrow">Independent Creative Portfolio / 2026</p>
+
+      <h1>
+        DESIGNING<br>
+        THE <span>VISUAL.</span>
+      </h1>
+
+      <p class="hero-description">
+        Exploring creativity through visual design, digital editing
+        and creative experimentation. A collection of ideas,
+        projects and visual work.
+      </p>
+
+      <div class="hero-bottom">
+        <a href="#edits" class="button">EXPLORE MY WORK ↗</a>
+        <a href="#about" class="text-link">More about me ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MY EDITS -->
+
+  <section id="edits">
+    <div class="container reveal">
+
+      <div class="section-top">
+        <div>
+          <p class="section-number">01 / DIGITAL EDITING</p>
+          <h2>My Edits.</h2>
+        </div>
+        <p class="section-description">
+          Digital edits, visual experiments and creative compositions.
+        </p>
+      </div>
+
+      <div class="gallery">
+
+        <article class="project">
+          <div class="project-image">
+            <img src="images/edit-01.jpg" alt="Digital edit project one">
+          </div>
+          <div class="project-info">
+            <div>
+              <h3>Project One</h3>
+              <p>Digital Editing / 2026</p>
+            </div>
+            <span class="project-number">01</span>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-image">
+            <img src="images/edit-02.jpg" alt="Digital edit project two">
+          </div>
+          <div class="project-info">
+            <div>
+              <h3>Project Two</h3>
+              <p>Photo Manipulation / 2026</p>
+            </div>
+            <span class="project-number">02</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GRAPHIC DESIGN -->
+
+  <section id="design">
+    <div class="container reveal">
+
+      <div class="section-top">
+        <div>
+          <p class="section-number">02 / VISUAL COMMUNICATION</p>
+          <h2>Graphic Design.</h2>
+        </div>
+        <p class="section-description">
+          Design projects focused on typography, layout and visual storytelling.
+        </p>
+      </div>
+
+      <div class="gallery">
+
+        <article class="project">
+          <div class="project-image">
+            <img src="images/design-01.jpg" alt="Graphic design poster project">
+          </div>
+          <div class="project-info">
+            <div>
+              <h3>Poster Design</h3>
+              <p>Editorial / 2026</p>
+            </div>
+            <span class="project-number">01</span>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-image">
+            <img src="images/design-02.jpg" alt="Graphic design project two">
+          </div>
+          <div class="project-info">
+            <div>
+              <h3>Creative Direction</h3>
+              <p>Visual Design / 2026</p>
+            </div>
+            <span class="project-number">02</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+
+  <section id="about">
+    <div class="container reveal about-grid">
+
+      <div>
+        <p class="section-number">03 / THE CREATIVE</p>
+        <h2>Ideas into<br>visuals.</h2>
+      </div>
+
+      <div class="about-copy">
+        <p>
+          I'm a creative designer interested in exploring the
+          relationship between imagery, typography and visual
+          communication.
+        </p>
+
+        <p>
+          From digital editing to graphic design, I enjoy
+          experimenting with different styles, developing new
+          ideas and turning concepts into finished visuals.
+        </p>
+
+        <div class="skills">
+          <span>Photoshop</span>
+          <span>Illustrator</span>
+          <span>Digital Editing</span>
+          <span>Typography</span>
+          <span>Visual Design</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+
+  <section class="contact" id="contact">
+    <div class="container reveal">
+      <p class="section-number">04 / GET IN TOUCH</p>
+
+      <h2>LET'S CREATE<br>SOMETHING.</h2>
+
+      <p>Interested in my work? Get in touch.</p>
+
+      <!-- Replace this email address with yours -->
+      <a class="button" href="mailto:YOUR-EMAIL@example.com">
+        CONTACT ME ↗
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container footer-content">
+    <span>© 2026 STUDIO / 01</span>
+    <span>Independent Creative Portfolio</span>
+    <a href="#home">BACK TO TOP ↑</a>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(element => {
+  observer.observe(element);
+});
+</script>
+
+</body>
+</html>
